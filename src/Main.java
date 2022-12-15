@@ -16,9 +16,7 @@ public class Main {
             rows[i / 4] = tile.addTo(rows[i / 4]);
         }
         //draw
-        for (int i = 0; i < 10; i++) {
-            genNum();
-        }
+        genNum();
         Board.init();
         //run
         while (!gameEnd) {
@@ -26,6 +24,7 @@ public class Main {
                 mousePressed = true;
                 click(StdDraw.mouseX, StdDraw.mouseY);
                 Board.init();
+                System.out.println(score);
             } else if (!StdDraw.isMousePressed() && mousePressed) {
                 mousePressed = false;
             }
@@ -51,7 +50,6 @@ public class Main {
         }
     }
     public static boolean down(){
-        System.out.println("down");
         boolean success = false;
         for (int i = 0; i < 4; i++) {
             for (int k = 0; k < 3; k++) {
@@ -63,9 +61,10 @@ public class Main {
                     }
                 }
             }
-            for (int j = 3; j > 0; j--) {
+            for (int j = 1; j < 4; j++) {
                 if (columns[i][j].content != 0 && columns[i][j - 1].content == columns[i][j].content){
                     success = true;
+                    score += columns[i][j - 1].content;
                     columns[i][j - 1].content *= 2;
                     columns[i][j].content = 0;
                     j++;
@@ -84,7 +83,6 @@ public class Main {
         return success;
     }
     public static boolean left(){
-        System.out.println("left");
         boolean success = false;
         for (int i = 0; i < 4; i++) {
             for (int k = 0; k < 3; k++) {
@@ -96,9 +94,10 @@ public class Main {
                     }
                 }
             }
-            for (int j = 3; j > 0; j--) {
+            for (int j = 1; j < 4; j++) {
                 if (rows[i][j].content != 0 && rows[i][j - 1].content == rows[i][j].content){
                     success = true;
+                    score += rows[i][j - 1].content;
                     rows[i][j - 1].content *= 2;
                     rows[i][j].content = 0;
                     j++;
@@ -117,7 +116,6 @@ public class Main {
         return success;
     }
     public static boolean right(){
-        System.out.println("down");
         boolean success = false;
         for (int i = 0; i < 4; i++) {
             for (int k = 0; k < 3; k++) {
@@ -129,9 +127,10 @@ public class Main {
                     }
                 }
             }
-            for (int j = 0; j < 3; j++) {
+            for (int j = 2; j > -1; j--) {
                 if (rows[i][j].content != 0 && rows[i][j + 1].content == rows[i][j].content){
                     success = true;
+                    score += rows[i][j + 1].content;
                     rows[i][j + 1].content *= 2;
                     rows[i][j].content = 0;
                     j++;
@@ -150,7 +149,6 @@ public class Main {
         return success;
     }
     public static boolean up(){
-        System.out.println("down");
         boolean success = false;
         for (int i = 0; i < 4; i++) {
             for (int k = 0; k < 3; k++) {
@@ -162,9 +160,10 @@ public class Main {
                     }
                 }
             }
-            for (int j = 0; j < 3; j++) {
+            for (int j = 2; j > -1; j--) {
                 if (columns[i][j].content != 0 && columns[i][j + 1].content == columns[i][j].content){
                     success = true;
+                    score += columns[i][j + 1].content;
                     columns[i][j + 1].content *= 2;
                     columns[i][j].content = 0;
                     j++;
