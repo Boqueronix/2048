@@ -7,6 +7,7 @@ public class Main {
     public static boolean gameEnd = false;
     public static boolean mousePressed = false;
     public static long score = 0;
+    public static boolean memeMode = false;
     public static void main(String[] args) {
         //building arrays
         for (int i = 0; i < 16; i++) {
