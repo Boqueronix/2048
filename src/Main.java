@@ -7,7 +7,8 @@ public class Main {
     public static boolean gameEnd = false;
     public static boolean mousePressed = false;
     public static long score = 0;
-    public static boolean memeMode = false;
+    public static boolean memeMode = true;
+    public static Key key = Key.NONE;
     public static void main(String[] args) {
         //building arrays
         for (int i = 0; i < 16; i++) {
@@ -28,6 +29,43 @@ public class Main {
                 System.out.println(score);
             } else if (!StdDraw.isMousePressed() && mousePressed) {
                 mousePressed = false;
+            }
+
+            if (StdDraw.isKeyPressed(40) && key != Key.DOWN){
+                key = Key.DOWN;
+                if (down()){
+                    genNum();
+                }
+                Board.init();
+            }else if (!StdDraw.isKeyPressed(40) && key == Key.DOWN){
+                key = Key.NONE;
+            }
+            if (StdDraw.isKeyPressed(38) && key != Key.UP){
+                key = Key.UP;
+                if (up()){
+                    genNum();
+                }
+                Board.init();
+            }else if (!StdDraw.isKeyPressed(38) && key == Key.UP){
+                key = Key.NONE;
+            }
+            if (StdDraw.isKeyPressed(39) && key != Key.RIGHT){
+                key = Key.RIGHT;
+                if (right()){
+                    genNum();
+                }
+                Board.init();
+            }else if (!StdDraw.isKeyPressed(39) && key == Key.RIGHT){
+                key = Key.NONE;
+            }
+            if (StdDraw.isKeyPressed(37) && key != Key.LEFT){
+                key = Key.LEFT;
+                if (left()){
+                    genNum();
+                }
+                Board.init();
+            }else if (!StdDraw.isKeyPressed(37) && key == Key.NONE){
+                key = Key.NONE;
             }
         }
     }
